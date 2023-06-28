@@ -1,13 +1,10 @@
-Config { font = "DejaVu Sans Mono Book 9"
-       , additionalFonts = ["Mononoki Regular 9"
-                           , "Font Awesome 6 Free Solid 9"
-                           , "Font Awesome 6 Brands 12"
-                           ]
+Config { font = "xft:DejaVu Sans Mono:Book:size=10"
+       , additionalFonts = []
        , borderColor = "black"
-       , border = FullB
-       , bgColor = "#282a36"
-       , fgColor = "whitesmoke"
-       , alpha = 128
+       , border = TopB
+       , bgColor = "black"
+       , fgColor = "grey"
+       , alpha = 255
        , position = Top
        , textOffset = -1
        , iconOffset = -1
@@ -18,16 +15,16 @@ Config { font = "DejaVu Sans Mono Book 9"
        , iconRoot = "."
        , allDesktops = True
        , overrideRedirect = True
-       , textOutputFormat = Ansi
-       , commands = [Run Cpu ["-L","3","-H","50",
-                               "--normal","green","--high","red"] 20
-                    , Run Memory ["-t","Mem: <usedratio>%"] 20
-                    , Run Swap [] 10
-                    , Run Date "<fn=2>\xf017</fn> %a, %b %_d" "date" 864000
-                    , Run Date "[%-H:%M]" "time" 600
+       , commands = [Run Network "eth0" ["-L","0","-H","32",
+                                          "--normal","green","--high","red"] 10
+                    , Run Cpu ["-L","3","-H","50",
+                               "--normal","green","--high","red"] 10
+                    , Run Memory ["-t","MEM: <usedratio>%"] 10
+                    , Run Date "%^a %_d/%-m %-l:%M" "date" 600
+                    , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " }\
-                    \{ %cpu% | %memory% | <fc=#ee9a00>%date%</fc> <fc=#ee9a00>%time%</fc>"
+       , template = "%StdinReader% }\
+                    \{ %eth0% | %cpu% | %memory% | <fc=#FF5733>%date%</fc>"
        }
