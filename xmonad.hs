@@ -15,8 +15,8 @@ myBrowser       = "librewolf"
 myBorderWidth   = 1
 myModMask       = mod4Mask
 myWorkspaces    = ["term","text","browse","note","media","misc"]
-myNormalBorderColor  = "#dddddd"
-myFocusedBorderColor = "#ff0000"
+myNormalBorderColor  = "#5f676A"
+myFocusedBorderColor = "#1D7C3A"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -205,6 +205,7 @@ myLogHook = return ()
 -- By default, do nothing.
 myStartupHook = do
     spawnOnce "nitrogen --restore &"
+    spawnOnce "picom --config ~/.config/picom/picom.conf -b"
     spawnOnce "lxpolkit &"
 
 ------------------------------------------------------------------------
